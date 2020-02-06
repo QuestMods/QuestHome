@@ -36,6 +36,7 @@ namespace QuestHome.UI
             webClient = new WebClient();
             if (Program.FirstRun || !Program.config.Sections.ContainsSection("ADB"))
             {
+                new UI.Popups.Welcome().ShowDialog();
                 var adbPicker = new UI.ADBPicker();
                 adbPicker.ShowDialog();
             }
@@ -69,6 +70,7 @@ namespace QuestHome.UI
 
         private void Adb_currentDeviceChanged(object sender, EventArgs e)
         {
+            if (adb.currentDevice is null) return;
             UpdateBatteryPercentages();
         }
 
@@ -84,13 +86,13 @@ namespace QuestHome.UI
                 else if (level <= 50) status_battery_hmd.ForeColor = Color.Yellow;
                 else if (level <= 25) status_battery_hmd.ForeColor = Color.Orange;
                 else if (level <= 10) status_battery_hmd.ForeColor = Color.Red;
-                status_battery_hmd.ToolTipText = status_battery_hmd.Text + "(not charging)";
+                // status_battery_hmd.ToolTipText = status_battery_hmd.Text + "(not charging)";
             });
         }
 
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UpdateBatteryPercentages();
+            if (!(adb.currentDevice is null)) UpdateBatteryPercentages();
             if (tabs_main.SelectedTab == tab_homes)
             {
                 LoadAvailableHomes();
@@ -146,6 +148,46 @@ namespace QuestHome.UI
             Program.config["Window"]["State"] = WindowState.ToString();
             // Config.Save(Program.config);
             Application.Exit();
+        }
+
+        private void changeDeviceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Popups.ADBDevicePicker(adb).Show();
+        }
+
+        private void shutdownToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show($"Are you sure you want to shut down {adb.currentDevice.Serial}?", "Shutdown device?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes) adb.SendCommand("reboot -s");
+        }
+
+        private void rebootSystemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show($"Are you sure you want to reboot {adb.currentDevice.Serial}?", "Reboot device?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes) adb.SendCommand("reboot");
+        }
+
+        private void rebootBootloaderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show($"Are you sure you want to reboot {adb.currentDevice.Serial} into bootloader?", "Reboot bootloader device?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes) adb.SendCommand("reboot bootloader");
+        }
+
+        private void rebootRecoveryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show($"Are you sure you want to reboot {adb.currentDevice.Serial} into recovery?", "Reboot recovery device?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes) adb.SendCommand("reboot recovery");
+        }
+
+        private void rebootFastbootToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show($"Are you sure you want to reboot {adb.currentDevice.Serial} into fastboot?", "Fastboot device?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes) adb.SendCommand("reboot fastboot");
+        }
+
+        private void shellToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Popups.ADBShell(adb).Show();
         }
     }
 }

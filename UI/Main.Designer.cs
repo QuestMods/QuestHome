@@ -33,6 +33,14 @@
             this.lst_homes = new System.Windows.Forms.CheckedListBox();
             this.menu_main = new System.Windows.Forms.MenuStrip();
             this.reloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rebootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rebootSystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rebootRecoveryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rebootFastbootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rebootBootloaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.shutdownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grp_apply = new System.Windows.Forms.GroupBox();
             this.tabs_main = new System.Windows.Forms.TabControl();
@@ -56,9 +64,12 @@
             this.tab_apps = new System.Windows.Forms.TabPage();
             this.status = new System.Windows.Forms.StatusStrip();
             this.status_bar = new System.Windows.Forms.ToolStripProgressBar();
-            this.status_text = new System.Windows.Forms.ToolStripStatusLabel();
+            this.status_battery_lc = new System.Windows.Forms.ToolStripStatusLabel();
+            this.status_battery_rc = new System.Windows.Forms.ToolStripStatusLabel();
             this.status_battery_hmd = new System.Windows.Forms.ToolStripStatusLabel();
-            this.aDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.status_connection_mode = new System.Windows.Forms.ToolStripStatusLabel();
+            this.status_text = new System.Windows.Forms.ToolStripStatusLabel();
+            this.shellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_main.SuspendLayout();
             this.tabs_main.SuspendLayout();
             this.tab_overview.SuspendLayout();
@@ -99,6 +110,70 @@
             this.reloadToolStripMenuItem.Size = new System.Drawing.Size(58, 21);
             this.reloadToolStripMenuItem.Text = "Reload";
             this.reloadToolStripMenuItem.Click += new System.EventHandler(this.reloadToolStripMenuItem_Click);
+            // 
+            // aDBToolStripMenuItem
+            // 
+            this.aDBToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeDeviceToolStripMenuItem,
+            this.rebootToolStripMenuItem,
+            this.shutdownToolStripMenuItem,
+            this.shellToolStripMenuItem});
+            this.aDBToolStripMenuItem.Name = "aDBToolStripMenuItem";
+            this.aDBToolStripMenuItem.Size = new System.Drawing.Size(45, 21);
+            this.aDBToolStripMenuItem.Text = "ADB";
+            // 
+            // changeDeviceToolStripMenuItem
+            // 
+            this.changeDeviceToolStripMenuItem.Name = "changeDeviceToolStripMenuItem";
+            this.changeDeviceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changeDeviceToolStripMenuItem.Text = "Change Device";
+            this.changeDeviceToolStripMenuItem.Click += new System.EventHandler(this.changeDeviceToolStripMenuItem_Click);
+            // 
+            // rebootToolStripMenuItem
+            // 
+            this.rebootToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rebootSystemToolStripMenuItem,
+            this.rebootRecoveryToolStripMenuItem,
+            this.rebootFastbootToolStripMenuItem,
+            this.rebootBootloaderToolStripMenuItem});
+            this.rebootToolStripMenuItem.Name = "rebootToolStripMenuItem";
+            this.rebootToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rebootToolStripMenuItem.Text = "Reboot";
+            // 
+            // rebootSystemToolStripMenuItem
+            // 
+            this.rebootSystemToolStripMenuItem.Name = "rebootSystemToolStripMenuItem";
+            this.rebootSystemToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.rebootSystemToolStripMenuItem.Text = "System";
+            this.rebootSystemToolStripMenuItem.Click += new System.EventHandler(this.rebootSystemToolStripMenuItem_Click);
+            // 
+            // rebootRecoveryToolStripMenuItem
+            // 
+            this.rebootRecoveryToolStripMenuItem.Name = "rebootRecoveryToolStripMenuItem";
+            this.rebootRecoveryToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.rebootRecoveryToolStripMenuItem.Text = "Recovery";
+            this.rebootRecoveryToolStripMenuItem.Click += new System.EventHandler(this.rebootRecoveryToolStripMenuItem_Click);
+            // 
+            // rebootFastbootToolStripMenuItem
+            // 
+            this.rebootFastbootToolStripMenuItem.Name = "rebootFastbootToolStripMenuItem";
+            this.rebootFastbootToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.rebootFastbootToolStripMenuItem.Text = "Fastboot";
+            this.rebootFastbootToolStripMenuItem.Click += new System.EventHandler(this.rebootFastbootToolStripMenuItem_Click);
+            // 
+            // rebootBootloaderToolStripMenuItem
+            // 
+            this.rebootBootloaderToolStripMenuItem.Name = "rebootBootloaderToolStripMenuItem";
+            this.rebootBootloaderToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.rebootBootloaderToolStripMenuItem.Text = "Bootloader";
+            this.rebootBootloaderToolStripMenuItem.Click += new System.EventHandler(this.rebootBootloaderToolStripMenuItem_Click);
+            // 
+            // shutdownToolStripMenuItem
+            // 
+            this.shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
+            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.shutdownToolStripMenuItem.Text = "Shutdown";
+            this.shutdownToolStripMenuItem.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -321,8 +396,12 @@
             // 
             this.status.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.status_bar,
-            this.status_text,
-            this.status_battery_hmd});
+            this.status_battery_lc,
+            this.status_battery_rc,
+            this.status_battery_hmd,
+            this.status_connection_mode,
+            this.status_text});
+            this.status.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.status.Location = new System.Drawing.Point(0, 470);
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(744, 22);
@@ -331,13 +410,24 @@
             // 
             // status_bar
             // 
+            this.status_bar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.status_bar.Name = "status_bar";
             this.status_bar.Size = new System.Drawing.Size(100, 16);
+            this.status_bar.Visible = false;
             // 
-            // status_text
+            // status_battery_lc
             // 
-            this.status_text.Name = "status_text";
-            this.status_text.Size = new System.Drawing.Size(0, 17);
+            this.status_battery_lc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.status_battery_lc.Name = "status_battery_lc";
+            this.status_battery_lc.Size = new System.Drawing.Size(23, 17);
+            this.status_battery_lc.Text = "?%";
+            // 
+            // status_battery_rc
+            // 
+            this.status_battery_rc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.status_battery_rc.Name = "status_battery_rc";
+            this.status_battery_rc.Size = new System.Drawing.Size(26, 17);
+            this.status_battery_rc.Text = "? %";
             // 
             // status_battery_hmd
             // 
@@ -347,11 +437,24 @@
             this.status_battery_hmd.Size = new System.Drawing.Size(26, 17);
             this.status_battery_hmd.Text = "? %";
             // 
-            // aDBToolStripMenuItem
+            // status_connection_mode
             // 
-            this.aDBToolStripMenuItem.Name = "aDBToolStripMenuItem";
-            this.aDBToolStripMenuItem.Size = new System.Drawing.Size(45, 21);
-            this.aDBToolStripMenuItem.Text = "ADB";
+            this.status_connection_mode.Name = "status_connection_mode";
+            this.status_connection_mode.Size = new System.Drawing.Size(13, 17);
+            this.status_connection_mode.Text = "?";
+            // 
+            // status_text
+            // 
+            this.status_text.Name = "status_text";
+            this.status_text.Size = new System.Drawing.Size(64, 17);
+            this.status_text.Text = "Loading ...";
+            // 
+            // shellToolStripMenuItem
+            // 
+            this.shellToolStripMenuItem.Name = "shellToolStripMenuItem";
+            this.shellToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.shellToolStripMenuItem.Text = "Shell";
+            this.shellToolStripMenuItem.Click += new System.EventHandler(this.shellToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -415,6 +518,17 @@
         private System.Windows.Forms.ToolStripStatusLabel status_battery_hmd;
         private System.Windows.Forms.TextBox txt_debug;
         private System.Windows.Forms.ToolStripMenuItem aDBToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel status_battery_lc;
+        private System.Windows.Forms.ToolStripStatusLabel status_battery_rc;
+        private System.Windows.Forms.ToolStripStatusLabel status_connection_mode;
+        private System.Windows.Forms.ToolStripMenuItem changeDeviceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rebootToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rebootSystemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rebootRecoveryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rebootFastbootToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem shutdownToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rebootBootloaderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem shellToolStripMenuItem;
     }
 }
 

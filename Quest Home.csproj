@@ -119,11 +119,29 @@
     <Compile Include="Classes\Device.cs" />
     <Compile Include="Classes\Firmware.cs" />
     <Compile Include="Classes\Home.cs" />
-    <Compile Include="UI\ADBPicker.cs">
+    <Compile Include="UI\Popups\ADBDevicePicker.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\ADBPicker.Designer.cs">
+    <Compile Include="UI\Popups\ADBDevicePicker.Designer.cs">
+      <DependentUpon>ADBDevicePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Popups\ADBPicker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Popups\ADBPicker.Designer.cs">
       <DependentUpon>ADBPicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Popups\ADBShell.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Popups\ADBShell.designer.cs">
+      <DependentUpon>ADBShell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Popups\Welcome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Popups\Welcome.Designer.cs">
+      <DependentUpon>Welcome.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Tabs\Firmwares.cs">
       <SubType>Form</SubType>
@@ -144,7 +162,10 @@
     <Compile Include="Utils\ExternalConsole.cs" />
     <Compile Include="Utils\Logger.cs" />
     <Compile Include="Utils\Utils.cs" />
-    <EmbeddedResource Include="UI\ADBPicker.resx">
+    <EmbeddedResource Include="UI\Popups\ADBDevicePicker.resx">
+      <DependentUpon>ADBDevicePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Popups\ADBPicker.resx">
       <DependentUpon>ADBPicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Main.resx">
@@ -160,6 +181,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI\Popups\ADBShell.resx">
+      <DependentUpon>ADBShell.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Popups\Welcome.resx">
+      <DependentUpon>Welcome.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

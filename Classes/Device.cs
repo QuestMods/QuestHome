@@ -24,6 +24,11 @@ namespace QuestHome.Classes
             Serial = GetSerial();
         }
 
+        public override string ToString()
+        {
+            return $"{Serial} {(IsWifi ? $" ({Data.Serial})" : $"")} [{Data.Model}]";
+        }
+
         private string GetSerial()
         {
             var serial = Data.Serial.Trim();

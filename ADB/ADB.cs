@@ -43,6 +43,7 @@ namespace QuestHome
         public StartServerResult Initialize()
         {
             var config = Program.config;
+            if (config[s].ContainsKey("path")) return StartServerResult.AlreadyRunning;
             server = new AdbServer();
             var result = server.StartServer(config[s]["path"], restartServerIfNewer: false);
             // Logger.Trace("ADB Connected Devices: {}", AdbClient.Instance.GetDevices().ToJson());
@@ -84,6 +85,7 @@ namespace QuestHome
 
         public string SendCommand(string command, bool newReceiver = true)
         {
+            if (currentDevice is null) return string.Empty;
             if (newReceiver) receiver = new ConsoleOutputReceiver();
             AdbClient.Instance.ExecuteRemoteCommand(command, currentDevice.Data, receiver);
             return receiver.ToString().Trim();
@@ -100,7 +102,7 @@ namespace QuestHome
             if (devs.Count() > 0) currentDevice = devs.First();
         }
 
-        private List<Device> GetDevices()
+        public List<Device> GetDevices()
         {
             var lst = new List<Device>();
             foreach (var dev in AdbClient.Instance.GetDevices())
