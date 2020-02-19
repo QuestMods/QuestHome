@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace QuestHome.UI.Popups
@@ -82,11 +78,12 @@ namespace QuestHome.UI.Popups
             string timestamp = dateTime.ToString("HH:mm:ss.fff", System.Globalization.CultureInfo.InvariantCulture);
             var line = $"[{timestamp}] {text}";
             lst_shell.Items.Add(line);
+            if (lst_shell.Items.Count > 150) lst_shell.Items.RemoveAt(0);
         }
 
         private void lst_shell_MeasureItem(object sender, MeasureItemEventArgs e)
         {
-            if (e.Index == 2) e.ItemHeight = lastCMDs.Last().Count(f => f == '/'); ;
+            if (e.Index == 2 && lastCMDs.Count > 1) e.ItemHeight = lastCMDs.Last().Count(f => f == '/'); ;
         }
 
         //DrawItem event handler for your ListBox

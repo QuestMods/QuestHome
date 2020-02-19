@@ -64,6 +64,8 @@ namespace QuestHome.UI
                         break;
                 }
             }
+            var devList = adb.GetDevices();
+            if (devList.Count > 0) adb.currentDevice = devList.First();
             adb.currentDeviceChanged += Adb_currentDeviceChanged;
             Logger.Trace("MainForm fully loaded");
         }
@@ -188,6 +190,11 @@ namespace QuestHome.UI
         private void shellToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new Popups.ADBShell(adb).Show();
+        }
+
+        private void recordSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Popups.DeviceSettings(adb).Show();
         }
     }
 }

@@ -48,11 +48,14 @@ namespace QuestHome.Classes
             return null;
         }
 
-        public string SendCommand(string command)
+        public string SendCommand(string command, ConsoleOutputReceiver receiver = null)
         {
-            var receiver = new ConsoleOutputReceiver();
+            if (receiver is null) receiver = new ConsoleOutputReceiver();
+            Logger.Debug("ADB -> {}: {}", Serial, command);
             AdbClient.Instance.ExecuteRemoteCommand(command, Data, receiver);
             return receiver.ToString().Trim();
         }
+        public void SetProp(string prop, string value) => SendCommand($"setprop {prop} {value}");
+        public string GetProp(string prop) => SendCommand($"getprop {prop}");
     }
 }

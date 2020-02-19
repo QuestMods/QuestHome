@@ -41,13 +41,16 @@
             this.rebootFastbootToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rebootBootloaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shutdownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.shellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grp_apply = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabs_main = new System.Windows.Forms.TabControl();
             this.tab_overview = new System.Windows.Forms.TabPage();
             this.txt_debug = new System.Windows.Forms.TextBox();
             this.tab_news = new System.Windows.Forms.TabPage();
             this.tab_homes = new System.Windows.Forms.TabPage();
+            this.box_homes_filter = new System.Windows.Forms.ComboBox();
             this.tab_firmware = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.box_fw_mirror = new System.Windows.Forms.ComboBox();
@@ -69,8 +72,9 @@
             this.status_battery_hmd = new System.Windows.Forms.ToolStripStatusLabel();
             this.status_connection_mode = new System.Windows.Forms.ToolStripStatusLabel();
             this.status_text = new System.Windows.Forms.ToolStripStatusLabel();
-            this.shellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recordSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_main.SuspendLayout();
+            this.grp_apply.SuspendLayout();
             this.tabs_main.SuspendLayout();
             this.tab_overview.SuspendLayout();
             this.tab_homes.SuspendLayout();
@@ -87,9 +91,9 @@
             this.lst_homes.FormattingEnabled = true;
             this.lst_homes.Items.AddRange(new object[] {
             "Default Home"});
-            this.lst_homes.Location = new System.Drawing.Point(6, 6);
+            this.lst_homes.Location = new System.Drawing.Point(6, 36);
             this.lst_homes.Name = "lst_homes";
-            this.lst_homes.Size = new System.Drawing.Size(196, 394);
+            this.lst_homes.Size = new System.Drawing.Size(196, 364);
             this.lst_homes.TabIndex = 0;
             // 
             // menu_main
@@ -117,7 +121,8 @@
             this.changeDeviceToolStripMenuItem,
             this.rebootToolStripMenuItem,
             this.shutdownToolStripMenuItem,
-            this.shellToolStripMenuItem});
+            this.shellToolStripMenuItem,
+            this.recordSettingsToolStripMenuItem});
             this.aDBToolStripMenuItem.Name = "aDBToolStripMenuItem";
             this.aDBToolStripMenuItem.Size = new System.Drawing.Size(45, 21);
             this.aDBToolStripMenuItem.Text = "ADB";
@@ -175,6 +180,13 @@
             this.shutdownToolStripMenuItem.Text = "Shutdown";
             this.shutdownToolStripMenuItem.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
             // 
+            // shellToolStripMenuItem
+            // 
+            this.shellToolStripMenuItem.Name = "shellToolStripMenuItem";
+            this.shellToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.shellToolStripMenuItem.Text = "Shell";
+            this.shellToolStripMenuItem.Click += new System.EventHandler(this.shellToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
@@ -185,12 +197,22 @@
             // 
             this.grp_apply.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grp_apply.Controls.Add(this.button1);
             this.grp_apply.Location = new System.Drawing.Point(208, 361);
             this.grp_apply.Name = "grp_apply";
             this.grp_apply.Size = new System.Drawing.Size(522, 42);
             this.grp_apply.TabIndex = 3;
             this.grp_apply.TabStop = false;
             this.grp_apply.Text = "Apply";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(441, 13);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Apply";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // tabs_main
             // 
@@ -245,6 +267,7 @@
             // 
             // tab_homes
             // 
+            this.tab_homes.Controls.Add(this.box_homes_filter);
             this.tab_homes.Controls.Add(this.lst_homes);
             this.tab_homes.Controls.Add(this.grp_apply);
             this.tab_homes.Location = new System.Drawing.Point(4, 22);
@@ -254,6 +277,14 @@
             this.tab_homes.TabIndex = 2;
             this.tab_homes.Text = "Homes";
             this.tab_homes.UseVisualStyleBackColor = true;
+            // 
+            // box_homes_filter
+            // 
+            this.box_homes_filter.FormattingEnabled = true;
+            this.box_homes_filter.Location = new System.Drawing.Point(6, 6);
+            this.box_homes_filter.Name = "box_homes_filter";
+            this.box_homes_filter.Size = new System.Drawing.Size(196, 21);
+            this.box_homes_filter.TabIndex = 4;
             // 
             // tab_firmware
             // 
@@ -449,12 +480,12 @@
             this.status_text.Size = new System.Drawing.Size(64, 17);
             this.status_text.Text = "Loading ...";
             // 
-            // shellToolStripMenuItem
+            // recordSettingsToolStripMenuItem
             // 
-            this.shellToolStripMenuItem.Name = "shellToolStripMenuItem";
-            this.shellToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.shellToolStripMenuItem.Text = "Shell";
-            this.shellToolStripMenuItem.Click += new System.EventHandler(this.shellToolStripMenuItem_Click);
+            this.recordSettingsToolStripMenuItem.Name = "recordSettingsToolStripMenuItem";
+            this.recordSettingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.recordSettingsToolStripMenuItem.Text = "Record Settings";
+            this.recordSettingsToolStripMenuItem.Click += new System.EventHandler(this.recordSettingsToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -472,6 +503,7 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menu_main.ResumeLayout(false);
             this.menu_main.PerformLayout();
+            this.grp_apply.ResumeLayout(false);
             this.tabs_main.ResumeLayout(false);
             this.tab_overview.ResumeLayout(false);
             this.tab_overview.PerformLayout();
@@ -529,6 +561,9 @@
         private System.Windows.Forms.ToolStripMenuItem shutdownToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rebootBootloaderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem shellToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox box_homes_filter;
+        private System.Windows.Forms.ToolStripMenuItem recordSettingsToolStripMenuItem;
     }
 }
 

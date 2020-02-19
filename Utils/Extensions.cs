@@ -190,6 +190,11 @@ namespace QuestHome
 
         #region String
 
+        public static string Format(this string input, params string[] args)
+        {
+            return string.Format(input, args);
+        }
+
         public static IEnumerable<string> SplitToLines(this string input)
         {
             if (input == null)

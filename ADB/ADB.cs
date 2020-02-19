@@ -83,13 +83,7 @@ namespace QuestHome
             }
         }
 
-        public string SendCommand(string command, bool newReceiver = true)
-        {
-            if (currentDevice is null) return string.Empty;
-            if (newReceiver) receiver = new ConsoleOutputReceiver();
-            AdbClient.Instance.ExecuteRemoteCommand(command, currentDevice.Data, receiver);
-            return receiver.ToString().Trim();
-        }
+        public string SendCommand(string command, ConsoleOutputReceiver receiver = null) => currentDevice.SendCommand(command, receiver);
 
         private void UseDevice(Device device)
         {
@@ -105,11 +99,20 @@ namespace QuestHome
         public List<Device> GetDevices()
         {
             var lst = new List<Device>();
-            foreach (var dev in AdbClient.Instance.GetDevices())
+            try
             {
-                lst.Add(new Device(dev));
+                var devs = AdbClient.Instance.GetDevices();
+                foreach (var dev in devs)
+                {
+                    lst.Add(new Device(dev));
+                }
+                return lst;
             }
-            return lst;
+            catch (Exception ex)
+            {
+                Logger.Error("Could not get List of ADB devices: {}", ex.Message);
+                return lst;
+            }
         }
     }
 }

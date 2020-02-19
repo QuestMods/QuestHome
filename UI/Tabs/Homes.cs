@@ -9,7 +9,7 @@ namespace QuestHome.UI
 {
     public partial class MainForm
     {
-        private readonly Uri homeRepositoryURL = new Uri("https://quest.minopia.de/homes.php");
+        private readonly Uri homeRepositoryURL = new Uri("https://quest.minopia.de/homes/api/?format=json");
         private List<Classes.Environment> lastHomeResponse;
 
         public void InitializeHomes()

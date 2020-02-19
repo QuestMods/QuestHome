@@ -137,6 +137,12 @@
     <Compile Include="UI\Popups\ADBShell.designer.cs">
       <DependentUpon>ADBShell.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Popups\DeviceSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Popups\DeviceSettings.Designer.cs">
+      <DependentUpon>DeviceSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Popups\Welcome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +189,9 @@
     </Compile>
     <EmbeddedResource Include="UI\Popups\ADBShell.resx">
       <DependentUpon>ADBShell.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Popups\DeviceSettings.resx">
+      <DependentUpon>DeviceSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Popups\Welcome.resx">
       <DependentUpon>Welcome.cs</DependentUpon>

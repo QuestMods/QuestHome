@@ -54,7 +54,13 @@ namespace QuestHome.UI
 
         private void btn_custom_Click(object sender, EventArgs e)
         {
-            txt_selected.Text = Utils.pickFile("Select adb.exe", null, "adb.exe|adb.exe|All files (*.*)|*.*").FullName;
+            var file = Utils.pickFile("Select adb.exe", null, "adb.exe|adb.exe|All files (*.*)|*.*");
+            if (file is null || !file.Exists)
+            {
+                MessageBox.Show("Selected file does not exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            txt_selected.Text = file.FullName;
         }
 
         private void ADBPicker_FormClosing(object sender, FormClosingEventArgs e)
